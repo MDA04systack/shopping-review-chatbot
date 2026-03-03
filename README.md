@@ -24,6 +24,9 @@ AI를 활용하여 수천 개의 쇼핑 리뷰를 분석하고 핵심 정보를 
 - Pinecone API Key (및 Index 설정)
 
 ## ⚙️ 설치 및 시작 방법
+- [로컬 환경 설치 및 실행 방법](./README.md#⚙️-설치-및-시작-방법)
+- [Vercel 배포 가이드](./.agents/workflows/deploy-vercel.md)
+
 1. **저장소 클론**
    ```bash
    git clone https://github.com/MDA04systack/shopping-review-chatbot.git
