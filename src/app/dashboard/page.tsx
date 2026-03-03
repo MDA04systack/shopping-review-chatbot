@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Search, Plus, Send, Share2, SlidersHorizontal, HelpCircle, User, Settings, MessageSquare, LogOut } from 'lucide-react';
+import { Search, Plus, Send, Share2, SlidersHorizontal, User, Settings, MessageSquare, LogOut } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 
 interface Message {
@@ -157,6 +157,19 @@ export default function Dashboard() {
             ? { background: '#10b981' }
             : { background: '#22c55e' };
 
+    const handleShare = () => {
+        if (!chatId) {
+            alert('현재 진행 중인 채팅이 없어 공유할 수 없습니다.');
+            return;
+        }
+        const url = `${window.location.origin}/dashboard?chatId=${chatId}`;
+        navigator.clipboard.writeText(url).then(() => {
+            alert('채팅방 링크가 클립보드에 복사되었습니다!');
+        }).catch(() => {
+            alert('링크 복사에 실패했습니다.');
+        });
+    };
+
     return (
         <div style={{ display: 'flex', height: '100vh', overflow: 'hidden', fontFamily: 'Inter, sans-serif', background: '#f5f7f8', color: '#0f172a' }}>
 
@@ -277,9 +290,13 @@ export default function Dashboard() {
                         <span style={{ background: '#f0fdf4', color: '#16a34a', fontSize: '10px', fontWeight: 700, padding: '2px 8px', borderRadius: '4px', border: '1px solid #bbf7d0', textTransform: 'uppercase' }}>실시간 분석</span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                        <Share2 size={18} style={{ color: '#94a3b8', cursor: 'pointer' }} />
-                        <div style={{ width: 1, height: 20, background: '#e2e8f0' }} />
-                        <HelpCircle size={18} style={{ color: '#94a3b8', cursor: 'pointer' }} />
+                        <button
+                            onClick={handleShare}
+                            title="링크 복사"
+                            style={{ background: 'none', border: 'none', padding: 0, display: 'flex' }}
+                        >
+                            <Share2 size={18} style={{ color: '#94a3b8', cursor: 'pointer' }} />
+                        </button>
                     </div>
                 </header>
 
