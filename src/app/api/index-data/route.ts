@@ -38,7 +38,7 @@ export async function POST() {
 
             const vectors = batch.map((row, j) => ({
                 id: `review-${row.id ?? (i + j)}`,
-                values: embeddingResponse.data[j].values as number[],
+                values: (embeddingResponse.data[j] as any).values as number[],
                 metadata: {
                     title: row.title ?? '',
                     content: row.content ?? '',

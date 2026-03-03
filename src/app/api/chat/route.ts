@@ -19,7 +19,7 @@ export async function POST(req: Request) {
             parameters: { inputType: 'query', truncate: 'END' },
         });
 
-        const queryVector = embeddingResponse.data[0].values as number[];
+        const queryVector = (embeddingResponse.data[0] as any).values as number[];
 
         // Vector similarity search
         const searchResult = await index.query({
