@@ -162,7 +162,7 @@ export default function Dashboard() {
             alert('현재 진행 중인 채팅이 없어 공유할 수 없습니다.');
             return;
         }
-        const url = `${window.location.origin}/dashboard?chatId=${chatId}`;
+        const url = `${window.location.origin}/share/${chatId}`;
         navigator.clipboard.writeText(url).then(() => {
             alert('채팅방 링크가 클립보드에 복사되었습니다!');
         }).catch(() => {
